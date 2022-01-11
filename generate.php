@@ -1,11 +1,12 @@
 <?php
 
 CONST SCHEMA = 'schema';
+CONST FUNCTIONS = 'function';
 CONST OUTPUT_FILE_NAME = "upgrade.sql";
 CONST OMMITED_NAMES =  [".", ".."];
 CONST EXTENSION = "sql";
 
-
+$functionFiles = array_diff(scandir('./' . FUNCTIONS), OMMITED_NAMES);
 $files = array_diff(scandir('./' . SCHEMA), OMMITED_NAMES);
 
 try {
@@ -19,6 +20,15 @@ if($upgradeFile) {
         $extension = pathinfo($file, PATHINFO_EXTENSION);
         if($extension === EXTENSION) {
             $content = file_get_contents('./' . SCHEMA . '/' . $file);
+            file_put_contents(OUTPUT_FILE_NAME, PHP_EOL . "--" . $file . PHP_EOL,FILE_APPEND);
+            file_put_contents(OUTPUT_FILE_NAME, PHP_EOL . $content,FILE_APPEND);
+        }
+    }
+
+    foreach ($functionFiles as $file) {
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+        if($extension === EXTENSION) {
+            $content = file_get_contents('./' . FUNCTIONS . '/' . $file);
             file_put_contents(OUTPUT_FILE_NAME, PHP_EOL . "--" . $file . PHP_EOL,FILE_APPEND);
             file_put_contents(OUTPUT_FILE_NAME, PHP_EOL . $content,FILE_APPEND);
         }

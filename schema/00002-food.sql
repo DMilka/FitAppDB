@@ -102,4 +102,13 @@ ALTER TABLE ingredient ALTER COLUMN carbohydrate TYPE integer;
 ALTER TABLE ingredient ALTER COLUMN fat TYPE integer;
 ALTER TABLE ingredient ALTER COLUMN calorie TYPE integer;
 
-ALTER TABLE ingredient ADD COLUMN divider_value integer default 100;
+SELECT execute_column_ignore_if_exists('
+    ALTER TABLE ingredient ADD COLUMN divider_value integer default 100;
+');
+
+SELECT execute_column_ignore_if_exists('
+    ALTER TABLE meal ADD COLUMN user_id integer not null;
+');
+SELECT execute_column_ignore_if_exists('
+   ALTER TABLE meal_set ADD COLUMN user_id integer not null;
+');
