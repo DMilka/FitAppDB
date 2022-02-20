@@ -33,15 +33,6 @@ CREATE SEQUENCE IF NOT EXISTS meal_set_id_seq
 	INCREMENT 1
 	START 1;
 
-CREATE SEQUENCE IF NOT EXISTS meal_to_meal_set
-	AS BIGINT
-	MINVALUE 1
-	MAXVALUE 9223372036854775807
-	INCREMENT 1
-	START 1;
-
-DROP SEQUENCE IF EXISTS meal_to_meal_set;
-
 CREATE SEQUENCE IF NOT EXISTS meal_to_meal_set_id_seq
 	AS BIGINT
 	MINVALUE 1
@@ -111,13 +102,69 @@ ALTER TABLE ingredient ALTER COLUMN carbohydrate TYPE integer;
 ALTER TABLE ingredient ALTER COLUMN fat TYPE integer;
 ALTER TABLE ingredient ALTER COLUMN calorie TYPE integer;
 
-SELECT execute_column_ignore_if_exists('
+SELECT execute_operation_on_column('
     ALTER TABLE ingredient ADD COLUMN divider_value integer default 100;
 ');
 
-SELECT execute_column_ignore_if_exists('
+SELECT execute_operation_on_column('
     ALTER TABLE meal ADD COLUMN user_id integer not null;
 ');
-SELECT execute_column_ignore_if_exists('
+SELECT execute_operation_on_column('
    ALTER TABLE meal_set ADD COLUMN user_id integer not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE ingredient ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE ingredient ADD COLUMN deleted_at timestamp with time zone default null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE amount_type ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE amount_type ADD COLUMN deleted_at timestamp with time zone default null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN deleted_at timestamp with time zone default null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN deleted_at timestamp with time zone default null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE ingredient_to_meal ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE ingredient_to_meal ADD COLUMN deleted_at timestamp with time zone default null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_to_meal_set ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_to_meal_set ADD COLUMN deleted_at timestamp with time zone default null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE users ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE users ADD COLUMN deleted_at timestamp with time zone default null;
 ');
