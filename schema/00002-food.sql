@@ -168,3 +168,11 @@ SELECT execute_operation_on_column('
 SELECT execute_operation_on_column('
    ALTER TABLE users ADD COLUMN deleted_at timestamp with time zone default null;
 ');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_set ADD COLUMN deleted boolean default false not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_set ADD COLUMN deleted_at timestamp with time zone default null;
+');
