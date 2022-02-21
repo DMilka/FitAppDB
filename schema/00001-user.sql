@@ -12,3 +12,11 @@ CREATE TABLE IF NOT EXISTS users (
 	email varchar(255) NOT NULL
 );
 
+SELECT execute_operation_on_column('
+   ALTER TABLE users DROP COLUMN IF EXISTS user_name;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE users ADD COLUMN IF NOT EXISTS username varchar(15) NOT NULL;
+');
+
