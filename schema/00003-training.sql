@@ -86,3 +86,8 @@ SELECT execute_operation_on_column('
 SELECT execute_operation_on_column('
    ALTER TABLE training_set ADD CONSTRAINT training_set_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
+
+ALTER TABLE training DROP COLUMN training_category_id;
+
+DROP TABLE training_category;
+DROP SEQUENCE training_category_id_seq;
