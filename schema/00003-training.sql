@@ -71,10 +71,10 @@ ALTER TABLE training ADD COLUMN IF NOT EXISTS deleted boolean default false;
 ALTER TABLE training_set ADD COLUMN IF NOT EXISTS deleted boolean default false;
 ALTER TABLE training_to_training_set ADD COLUMN IF NOT EXISTS deleted boolean default false;
 
-ALTER TABLE training_category ADD COLUMN IF NOT EXISTS deleted_AT timestamp with time zone default null;
-ALTER TABLE training ADD COLUMN IF NOT EXISTS deleted_AT timestamp with time zone default null;
-ALTER TABLE training_set ADD COLUMN IF NOT EXISTS deleted_AT timestamp with time zone default null;
-ALTER TABLE training_to_training_set ADD COLUMN if NOT EXISTS deleted_AT timestamp with time zone default null;
+ALTER TABLE training_category ADD COLUMN IF NOT EXISTS deleted_at timestamp with time zone default null;
+ALTER TABLE training ADD COLUMN IF NOT EXISTS deleted_at timestamp with time zone default null;
+ALTER TABLE training_set ADD COLUMN IF NOT EXISTS deleted_at timestamp with time zone default null;
+ALTER TABLE training_to_training_set ADD COLUMN if NOT EXISTS deleted_at timestamp with time zone default null;
 
 SELECT execute_operation_on_column('
    ALTER TABLE training_category ADD CONSTRAINT training_category_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -91,3 +91,8 @@ ALTER TABLE training DROP COLUMN training_category_id;
 
 DROP TABLE training_category;
 DROP SEQUENCE training_category_id_seq;
+
+ALTER TABLE training_to_training_set ADD COLUMN IF NOT EXISTS amount integer;
+ALTER TABLE training_to_training_set ADD COLUMN IF NOT EXISTS series_amount integer;
+ALTER TABLE training_to_training_set DROP COLUMN IF EXISTS name;
+ALTER TABLE training_to_training_set DROP COLUMN IF EXISTS description;
