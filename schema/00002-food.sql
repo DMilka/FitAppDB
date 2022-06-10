@@ -185,3 +185,4 @@ SELECT execute_operation_on_column('
    ALTER TABLE meal_set ADD CONSTRAINT meal_set_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
 
+ALTER TABLE ingredient_to_meal ADD COLUMN IF NOT EXISTS amount integer not null default 0;
