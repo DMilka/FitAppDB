@@ -194,3 +194,5 @@ SELECT execute_operation_on_column('
 SELECT execute_operation_on_column('
    ALTER TABLE meal_to_meal_set ADD CONSTRAINT meal_to_meal_set_ingredient_id_fk FOREIGN KEY (ingredient_id) REFERENCES ingredient (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
+
+ALTER TABLE meal_to_meal_set ALTER COLUMN meal_id DROP NOT NULL;
