@@ -186,3 +186,11 @@ SELECT execute_operation_on_column('
 ');
 
 ALTER TABLE ingredient_to_meal ADD COLUMN IF NOT EXISTS amount integer not null default 0;
+
+SELECT execute_operation_on_column('
+    ALTER TABLE meal_to_meal_set ADD COLUMN ingredient_id integer;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_to_meal_set ADD CONSTRAINT meal_to_meal_set_ingredient_id_fk FOREIGN KEY (ingredient_id) REFERENCES ingredient (id) ON DELETE CASCADE ON UPDATE CASCADE;
+');
