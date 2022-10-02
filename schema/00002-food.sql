@@ -196,3 +196,7 @@ SELECT execute_operation_on_column('
 ');
 
 ALTER TABLE meal_to_meal_set ALTER COLUMN meal_id DROP NOT NULL;
+
+SELECT execute_operation_on_column('
+    ALTER TABLE meal_to_meal_set ADD COLUMN amount varchar(128);
+');
