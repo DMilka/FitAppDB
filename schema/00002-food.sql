@@ -102,6 +102,14 @@ ALTER TABLE ingredient ALTER COLUMN carbohydrate TYPE integer;
 ALTER TABLE ingredient ALTER COLUMN fat TYPE integer;
 ALTER TABLE ingredient ALTER COLUMN calorie TYPE integer;
 
+ALTER TABLE ingredient ALTER COLUMN amount TYPE numeric(10,2);
+ALTER TABLE ingredient ALTER COLUMN protein TYPE numeric(10,2);
+ALTER TABLE ingredient ALTER COLUMN carbohydrate TYPE numeric(10,2);
+ALTER TABLE ingredient ALTER COLUMN fat TYPE numeric(10,2);
+ALTER TABLE ingredient ALTER COLUMN calorie TYPE numeric(10,2);
+
+ALTER TABLE ingredient_to_meal ALTER COLUMN amount TYPE numeric(10,2);
+
 SELECT execute_operation_on_column('
     ALTER TABLE ingredient ADD COLUMN divider_value integer default 100;
 ');
@@ -199,4 +207,24 @@ ALTER TABLE meal_to_meal_set ALTER COLUMN meal_id DROP NOT NULL;
 
 SELECT execute_operation_on_column('
     ALTER TABLE meal_to_meal_set ADD COLUMN amount varchar(128);
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE amount_type ADD COLUMN user_id integer not null;
+');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN protein numeric(10,2) default 0 not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN carbohydrate numeric(10,2) default 0 not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN fat numeric(10,2) default 0 not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN calorie numeric(10,2) default 0  not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal ADD COLUMN amount numeric(10,2) default 0 not null;
 ');
