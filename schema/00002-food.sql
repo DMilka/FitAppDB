@@ -228,3 +228,19 @@ SELECT execute_operation_on_column('
 SELECT execute_operation_on_column('
    ALTER TABLE meal ADD COLUMN amount numeric(10,2) default 0 not null;
 ');
+
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_set ADD COLUMN protein numeric(10,2) default 0 not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_set ADD COLUMN carbohydrate numeric(10,2) default 0 not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_set ADD COLUMN fat numeric(10,2) default 0 not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_set ADD COLUMN calorie numeric(10,2) default 0  not null;
+');
+SELECT execute_operation_on_column('
+   ALTER TABLE meal_set ADD COLUMN amount numeric(10,2) default 0 not null;
+');
