@@ -92,7 +92,9 @@ ALTER TABLE training DROP COLUMN training_category_id;
 DROP TABLE training_category;
 DROP SEQUENCE training_category_id_seq;
 
+ALTER TABLE training_to_training_set DROP COLUMN IF EXISTS amount;
 ALTER TABLE training_to_training_set ADD COLUMN IF NOT EXISTS amount integer;
 ALTER TABLE training_to_training_set ADD COLUMN IF NOT EXISTS series_amount integer;
+ALTER TABLE training_to_training_set ADD COLUMN IF NOT EXISTS time integer;
 ALTER TABLE training_to_training_set DROP COLUMN IF EXISTS name;
 ALTER TABLE training_to_training_set DROP COLUMN IF EXISTS description;
