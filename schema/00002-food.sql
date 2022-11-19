@@ -185,11 +185,11 @@ SELECT execute_operation_on_column('
    ALTER TABLE meal_set ADD COLUMN deleted_at timestamp with time zone default null;
 ');
 
-SELECT execute_operation_on_column('
+SELECT execute_constraint_on_table('
    ALTER TABLE meal ADD CONSTRAINT meal_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
 
-SELECT execute_operation_on_column('
+SELECT execute_constraint_on_table('
    ALTER TABLE meal_set ADD CONSTRAINT meal_set_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
 
@@ -199,7 +199,7 @@ SELECT execute_operation_on_column('
     ALTER TABLE meal_to_meal_set ADD COLUMN ingredient_id integer;
 ');
 
-SELECT execute_operation_on_column('
+SELECT execute_constraint_on_table('
    ALTER TABLE meal_to_meal_set ADD CONSTRAINT meal_to_meal_set_ingredient_id_fk FOREIGN KEY (ingredient_id) REFERENCES ingredient (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
 

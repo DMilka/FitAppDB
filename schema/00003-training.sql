@@ -76,18 +76,20 @@ ALTER TABLE training ADD COLUMN IF NOT EXISTS deleted_at timestamp with time zon
 ALTER TABLE training_set ADD COLUMN IF NOT EXISTS deleted_at timestamp with time zone default null;
 ALTER TABLE training_to_training_set ADD COLUMN if NOT EXISTS deleted_at timestamp with time zone default null;
 
-SELECT execute_operation_on_column('
+SELECT execute_constraint_on_table('
    ALTER TABLE training_category ADD CONSTRAINT training_category_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
 
-SELECT execute_operation_on_column('
+SELECT execute_constraint_on_table('
    ALTER TABLE training ADD CONSTRAINT training_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
-SELECT execute_operation_on_column('
+SELECT execute_constraint_on_table('
    ALTER TABLE training_set ADD CONSTRAINT training_set_to_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 ');
 
-ALTER TABLE training DROP COLUMN training_category_id;
+SELECT execute_operation_on_column_ignore_if_not_exist('
+   ALTER TABLE training DROP COLUMN training_category_id;
+');
 
 DROP TABLE training_category;
 DROP SEQUENCE training_category_id_seq;
